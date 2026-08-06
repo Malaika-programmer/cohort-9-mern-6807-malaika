@@ -1,12 +1,5 @@
 export { default as Button } from "./Button/Button";
 export { default as Card } from "./Card/Card";
-export { default as Marquee } from "./Marquee/Marquee";
 export { default as SectionHeading } from "./SectionHeading/SectionHeading";
-export { default as Badge } from "./Badge/Badge";
 export { default as IconBox } from "./IconBox/IconBox";
 export { default as Input } from "./Input/Input";
-export { default as TextArea } from "./TextArea/TextArea";
-export { default as ScrollToTop } from "./ScrollToTop/ScrollToTop";
-export { default as Switch } from "./Switch/Switch";
-export { default as ConfirmModal } from "./ConfirmModal/ConfirmModal";
-export { ToastProvider, useToast } from "./Toast/Toast";

@@ -1,1 +1,0 @@
-export { default as NotFoundHero } from "./NotFoundHero/NotFoundHero";
