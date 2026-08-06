@@ -1,0 +1,149 @@
+.wrapper {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.breakdown {
+  flex: 1;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.itemContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.itemHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.itemHeader > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.itemHeader strong {
+  color: var(--color-heading, #0f172a);
+  font-size: 0.78rem;
+}
+
+.itemHeader span {
+  margin-top: 0.15rem;
+
+  color: var(--color-text-secondary, #64748b);
+  font-size: 0.68rem;
+}
+
+.track {
+  height: 7px;
+  margin-top: 0.55rem;
+  overflow: hidden;
+
+  background: var(--color-border, #e2e8f0);
+  border-radius: 999px;
+}
+
+.track span {
+  display: block;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #2563eb,
+      #4f46e5
+    );
+
+  border-radius: inherit;
+}
+
+.streak {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+
+  color: #fff;
+  background:
+    linear-gradient(
+      135deg,
+      #7f1d1d,
+      #ea580c
+    );
+}
+
+.streak > div:nth-child(2) > span {
+  color: #fed7aa;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.streak h3 {
+  margin: 0.3rem 0 0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.streak p {
+  margin: 0.35rem 0 0;
+  color: #ffedd5;
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+
+.streakValue {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+
+  color: #fff;
+  font-size: 2.2rem;
+}
+
+.streakValue small {
+  font-size: 0.75rem;
+}
+
+.bestStreak {
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding-top: 0.8rem;
+  border-top: 1px solid rgb(255 255 255 / 20%);
+
+  color: #ffedd5;
+  font-size: 0.72rem;
+}
+
+.bestStreak strong {
+  color: #fff;
+}
+
+@media (max-width: 520px) {
+  .streak {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+}

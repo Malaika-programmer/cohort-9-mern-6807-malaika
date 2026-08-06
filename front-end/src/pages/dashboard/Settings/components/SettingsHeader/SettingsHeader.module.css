@@ -1,0 +1,15 @@
+.header{
+display:flex;
+align-items:flex-start;
+gap:1.25rem;
+}
+
+@media(max-width:600px){
+
+.header{
+
+flex-direction:column;
+
+}
+
+}

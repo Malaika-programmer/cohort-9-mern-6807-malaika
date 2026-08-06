@@ -1,0 +1,116 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  color: var(--color-heading, #111827);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.required {
+  color: #dc2626;
+}
+
+.textArea {
+  width: 100%;
+  min-width: 0;
+  min-height: 8rem;
+
+  padding: 0.75rem 1rem;
+
+  border: 1px solid var(--color-border, #d1d5db);
+  border-radius: 0.85rem;
+  outline: 0;
+
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text, #1f2937);
+
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  resize: vertical;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.textArea::placeholder {
+  color: #9ca3af;
+}
+
+.textArea:hover {
+  border-color: #a5b4fc;
+}
+
+.textArea:focus {
+  border-color: var(--color-primary, #6366f1);
+
+  box-shadow:
+    0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.errorState {
+  border-color: #dc2626;
+}
+
+.errorState:hover,
+.errorState:focus {
+  border-color: #dc2626;
+
+  box-shadow:
+    0 0 0 4px rgba(220, 38, 38, 0.1);
+}
+
+.disabledState {
+  cursor: not-allowed;
+
+  background: #f3f4f6;
+  opacity: 0.7;
+}
+
+.helperText,
+.errorMessage {
+  margin: 0;
+
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.helperText {
+  color: var(--color-muted, #6b7280);
+}
+
+.errorMessage {
+  color: #dc2626;
+}
+
+:global(.dark) .textArea {
+  background: var(--color-surface, #111827);
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+:global(.dark) .disabledState {
+  background: #1f2937;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .textArea {
+    transition: none;
+  }
+}

@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+@media (max-width: 580px) {
+  .header {
+    flex-direction: column;
+  }
+}

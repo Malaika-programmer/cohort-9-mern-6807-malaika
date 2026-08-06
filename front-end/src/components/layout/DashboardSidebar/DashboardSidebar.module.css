@@ -1,0 +1,240 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1100;
+  display: flex;
+  width: 260px;
+  flex-direction: column;
+  color: #A1A1AA;
+  background: #09090B;
+  border-right: 1px solid #27272A;
+  transition: all var(--transition-normal);
+}
+
+.header {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid transparent;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #FAFAFA;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-md);
+  place-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.brandName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brandName span {
+  color: var(--color-primary);
+}
+
+.closeButton {
+  display: none;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #A1A1AA;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.closeButton:hover {
+  color: #FAFAFA;
+  background: #18181B;
+  border-color: #27272A;
+}
+
+.closeButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.navigation {
+  flex: 1;
+  padding: 1rem 0.75rem;
+  overflow-y: auto;
+}
+
+.navigation::-webkit-scrollbar {
+  display: none;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navLink {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  color: #A1A1AA;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.navLink svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.navLink:hover {
+  color: #FAFAFA;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navLink:hover svg {
+  opacity: 1;
+}
+
+.activeLink {
+  color: #FAFAFA;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+.activeLink svg {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+.divider {
+  height: 1px;
+  margin: 1rem 0.75rem;
+  background: #27272A;
+}
+
+.footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #27272A;
+  background: #09090B;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-full);
+  place-items: center;
+  border: 2px solid #27272A;
+}
+
+.userDetails {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.userDetails strong,
+.userDetails span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userDetails strong {
+  color: #FAFAFA;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.userDetails span {
+  color: #A1A1AA;
+  font-size: 0.75rem;
+}
+
+.logoutButton {
+  display: flex;
+  width: 100%;
+  min-height: 36px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+  color: var(--color-danger);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.logoutButton:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.logoutButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-2xl);
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .closeButton {
+    display: inline-flex;
+  }
+}

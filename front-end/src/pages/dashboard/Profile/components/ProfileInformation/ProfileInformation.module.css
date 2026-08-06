@@ -1,0 +1,133 @@
+.card {
+  min-width: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field > span {
+  color: var(--color-heading, #0f172a);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field textarea {
+  width: 100%;
+
+  padding: 0.85rem 1rem;
+
+  color: var(--color-text, #334155);
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  background:
+    var(--color-surface, #ffffff);
+
+  border: 1px solid
+    var(--color-border, #d1d5db);
+
+  border-radius: 0.85rem;
+
+  resize: vertical;
+}
+
+.field textarea:focus {
+  border-color:
+    var(--color-primary, #6366f1);
+
+  outline: none;
+
+  box-shadow:
+    0 0 0 4px
+    rgb(99 102 241 / 12%);
+}
+
+.field textarea[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.fieldFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  color: var(
+    --color-text-secondary,
+    #64748b
+  );
+
+  font-size: 0.75rem;
+}
+
+.fieldFooter small {
+  color: #dc2626;
+}
+
+.successMessage,
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+
+  padding: 0.85rem 1rem;
+
+  font-size: 0.84rem;
+  line-height: 1.5;
+
+  border-radius: 0.8rem;
+}
+
+.successMessage {
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.successMessage svg {
+  width: 18px;
+  height: 18px;
+}
+
+.errorMessage {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  padding-top: 1rem;
+
+  border-top: 1px solid
+    var(--color-border, #e2e8f0);
+}
+
+@media (max-width: 680px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

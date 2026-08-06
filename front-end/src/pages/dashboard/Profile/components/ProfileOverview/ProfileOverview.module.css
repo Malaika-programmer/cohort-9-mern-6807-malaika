@@ -1,0 +1,288 @@
+.overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--color-primary-light, #eef2ff),
+      var(--color-surface, #ffffff)
+    );
+}
+
+.profileArea {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  flex: 0 0 130px;
+}
+
+.avatarImage,
+.avatarFallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.avatarImage {
+  display: block;
+  object-fit: cover;
+  border: 5px solid
+    var(--color-surface, #ffffff);
+  box-shadow:
+    0 12px 30px rgb(15 23 42 / 14%);
+}
+
+.avatarFallback {
+  display: grid;
+
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 800;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #4f46e5
+    );
+
+  border: 5px solid
+    var(--color-surface, #ffffff);
+
+  place-items: center;
+}
+
+.cameraButton {
+  position: absolute;
+  right: 3px;
+  bottom: 6px;
+
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  color: #ffffff;
+  background: #2563eb;
+
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.cameraButton svg {
+  width: 17px;
+  height: 17px;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.identity {
+  min-width: 0;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.nameRow h2 {
+  margin: 0;
+
+  color: var(--color-heading, #0f172a);
+  font-size: 1.6rem;
+}
+
+.identity > p {
+  margin: 0.35rem 0 0;
+
+  color: var(--color-primary, #6366f1);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.identity > span {
+  display: block;
+  margin-top: 0.3rem;
+
+  color: var(
+    --color-text-secondary,
+    #64748b
+  );
+
+  font-size: 0.84rem;
+}
+
+.photoActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  margin-top: 1rem;
+}
+
+.identity small {
+  display: block;
+  margin-top: 0.6rem;
+
+  color: var(
+    --color-text-secondary,
+    #94a3b8
+  );
+
+  font-size: 0.72rem;
+}
+
+.imageError {
+  display: block;
+  margin-top: 0.5rem;
+
+  color: #dc2626;
+  font-size: 0.78rem;
+}
+
+.accountDetails {
+  display: grid;
+  width: min(100%, 430px);
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 0.8rem;
+}
+
+.detail,
+.completion {
+  padding: 0.9rem;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface, #ffffff) 82%,
+      transparent
+    );
+
+  border: 1px solid
+    var(--color-border, #e2e8f0);
+
+  border-radius: 0.85rem;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail span,
+.completion span {
+  color: var(
+    --color-text-secondary,
+    #64748b
+  );
+
+  font-size: 0.7rem;
+}
+
+.detail strong {
+  margin-top: 0.3rem;
+
+  color: var(--color-heading, #0f172a);
+  font-size: 0.82rem;
+}
+
+.completion {
+  grid-column: 1 / -1;
+}
+
+.completion > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.completion strong {
+  color: var(--color-heading, #0f172a);
+  font-size: 0.78rem;
+}
+
+.progressTrack {
+  height: 8px;
+  margin-top: 0.6rem;
+  overflow: hidden;
+
+  background:
+    var(--color-border, #e2e8f0);
+
+  border-radius: 999px;
+}
+
+.progressTrack span {
+  display: block;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #2563eb,
+      #4f46e5
+    );
+
+  border-radius: inherit;
+}
+
+@media (max-width: 1000px) {
+  .overview {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .accountDetails {
+    width: 100%;
+  }
+}
+
+@media (max-width: 620px) {
+  .profileArea {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .avatarWrapper {
+    width: 110px;
+    height: 110px;
+    flex-basis: 110px;
+  }
+
+  .accountDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .completion {
+    grid-column: auto;
+  }
+
+  .photoActions {
+    flex-direction: column;
+  }
+
+  .photoActions button {
+    width: 100%;
+  }
+}

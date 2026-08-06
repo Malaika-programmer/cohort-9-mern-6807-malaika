@@ -1,0 +1,52 @@
+.badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:.45rem .9rem;
+
+    font-size:.8rem;
+    font-weight:700;
+
+    letter-spacing:.04em;
+
+    transition:.25s;
+}
+
+.rounded{
+    border-radius:999px;
+}
+
+.primary{
+    background:#eef2ff;
+    color:#4f46e5;
+}
+
+.success{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.warning{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.danger{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.dark{
+    background:#111827;
+    color:#fff;
+}
+
+.light{
+    background:#f3f4f6;
+    color:#374151;
+}
+
+.badge:hover{
+    transform:translateY(-2px);
+}

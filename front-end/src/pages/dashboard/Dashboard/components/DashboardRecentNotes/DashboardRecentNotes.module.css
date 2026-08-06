@@ -1,0 +1,66 @@
+.headingRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.noteCard {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.noteContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.noteTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.noteTop h3 {
+  margin: 0;
+  color: var(--color-heading, #0f172a);
+  font-size: 1rem;
+}
+
+.noteContent p {
+  margin: 0.55rem 0 0;
+  color: var(--color-text-secondary, #64748b);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.noteContent > span {
+  display: block;
+  margin-top: 0.6rem;
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .headingRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .noteCard {
+    flex-direction: column;
+  }
+
+  .noteTop {
+    flex-direction: column;
+  }
+}

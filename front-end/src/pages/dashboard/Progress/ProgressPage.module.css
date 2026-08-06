@@ -1,0 +1,20 @@
+.progressPage {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.analyticsGrid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(320px, 0.65fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1100px) {
+  .analyticsGrid {
+    grid-template-columns: 1fr;
+  }
+}
