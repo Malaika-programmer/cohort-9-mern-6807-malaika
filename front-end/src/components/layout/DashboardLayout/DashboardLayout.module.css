@@ -1,0 +1,51 @@
+.layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-background);
+  overflow-x: hidden;
+}
+
+.mainArea {
+  width: calc(100% - 260px);
+  min-width: 0;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageContent {
+  width: 100%;
+  flex: 1;
+  padding: 2.5rem;
+}
+
+.overlay {
+  display: none;
+}
+
+/* Sidebar space is removed on smaller screens */
+@media (max-width: 1024px) {
+  .mainArea {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1090;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
+
+@media (max-width: 640px) {
+  .pageContent {
+    padding: 1.25rem;
+  }
+}

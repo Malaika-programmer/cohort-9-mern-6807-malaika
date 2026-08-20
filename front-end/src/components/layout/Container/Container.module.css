@@ -1,0 +1,11 @@
+.container {
+  width: min(100% - 2rem, 1200px);
+  margin: 0 auto;
+}
+
+/* adding more space on bigger screens */
+@media (min-width: 768px) {
+  .container {
+    width: min(100% - 3rem, 1200px);
+  }
+}
