@@ -1,0 +1,81 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.text {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.text span {
+  color: var(--color-heading, #0f172a);
+  font-weight: 700;
+}
+
+.text small {
+  margin-top: 0.3rem;
+  color: var(--color-text-muted, #64748b);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.control {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.control input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.track {
+  display: inline-flex;
+  width: 52px;
+  height: 30px;
+  align-items: center;
+  padding: 3px;
+  background: #cbd5e1;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.thumb {
+  width: 22px;
+  height: 22px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgb(15 23 42 / 18%);
+  transition: transform 180ms ease;
+}
+
+.control input:checked + .track {
+  background: var(--color-primary, #2563eb);
+}
+
+.control input:checked + .track .thumb {
+  transform: translateX(22px);
+}
+
+.control input:focus-visible + .track {
+  outline: 3px solid rgb(37 99 235 / 24%);
+  outline-offset: 3px;
+}
+
+.control input:disabled + .track {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
