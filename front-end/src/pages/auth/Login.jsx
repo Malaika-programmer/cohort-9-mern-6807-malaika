@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   Lock,
   Mail,
   ShieldCheck,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 
 import { Button, Card, Input } from "../../components/ui";
@@ -11,13 +14,19 @@ import { Button, Card, Input } from "../../components/ui";
 const loginContent = {
   page: {
     badge: "Welcome Back",
+
     title: "Log In To MindPlanAI",
+
+
     description:
       "Access your notes, learning plans, AI tools and personalized workspace.",
   },
 
-  form: {
-    email: {
+  form: 
+  {
+    email: 
+    {
+
       label: "Email Address",
       placeholder: "Enter your email address",
       type: "email",
@@ -59,6 +68,7 @@ function Login() {
   const [formValues, setFormValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { page, form, signup, security } = loginContent;
 
@@ -102,9 +112,6 @@ function Login() {
 
     if (!formValues.password) {
       newErrors.password = "Password is required.";
-    } else if (formValues.password.length < 8) {
-      newErrors.password =
-        "Password must contain at least 8 characters.";
     }
 
     return newErrors;
@@ -130,18 +137,10 @@ function Login() {
         rememberMe: formValues.rememberMe,
       };
 
-      /*
-       * Backend login API will be connected here.
-       *
-       * Example:
-       * const response = await authService.login(loginPayload);
-       */
-
-      console.log("Login payload:", loginPayload);
-
-      // Temporary navigation until the API is connected.
-      // Remove this after the real login response is handled.
-      // navigate("/dashboard");
+      const response = await axios.post("http://localhost:5000/api/auth/login", loginPayload);
+      
+      localStorage.setItem("token", response.data.data.token);
+      navigate("/dashboard");
 
     } catch (error) {
       setErrors({
@@ -385,7 +384,7 @@ function Login() {
                 <Input
                   label={form.password.label}
                   name="password"
-                  type={form.password.type}
+                  type={showPassword ? "text" : form.password.type}
                   value={formValues.password}
                   placeholder={form.password.placeholder}
                   icon={form.password.icon}
@@ -394,6 +393,19 @@ function Login() {
                   required
                   disabled={isSubmitting}
                   onChange={handleInputChange}
+                  rightIcon={
+                    showPassword ? (
+                      <EyeOff
+                        size={18}
+                        onClick={() => setShowPassword(false)}
+                      />
+                    ) : (
+                      <Eye
+                        size={18}
+                        onClick={() => setShowPassword(true)}
+                      />
+                    )
+                  }
                 />
 
                 <div className="formOptions">

@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Eye,
@@ -80,7 +80,11 @@ function Signup() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Registration failed.");
+        let errorMessage = data.message;
+        if (data.errors && Object.values(data.errors).length > 0) {
+          errorMessage = Object.values(data.errors)[0];
+        }
+        throw new Error(errorMessage || "Registration failed.");
       }
 
       navigate("/login");
