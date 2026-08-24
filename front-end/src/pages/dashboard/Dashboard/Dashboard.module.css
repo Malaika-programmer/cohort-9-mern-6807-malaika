@@ -1,0 +1,449 @@
+.dashboardPage {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Welcome */
+
+.welcome {
+  position: relative;
+  display: flex;
+  min-height: 270px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem;
+  overflow: hidden;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.welcome::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: radial-gradient(
+    circle at top right,
+    rgb(255 255 255 / 10%) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.welcomeContent {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.welcomeContent h1 {
+  margin: 1.25rem 0 0;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.welcomeContent h1 span {
+  color: rgb(255 255 255 / 85%);
+}
+
+.welcomeContent p {
+  max-width: 620px;
+  margin: 0.9rem 0 0;
+  color: rgb(255 255 255 / 70%);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.decoration {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  flex: 0 0 210px;
+  opacity: 0.8;
+}
+
+.decoration span {
+  position: absolute;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 50%;
+}
+
+.decoration span:nth-child(1) {
+  inset: 0;
+}
+
+.decoration span:nth-child(2) {
+  inset: 32px;
+}
+
+.decoration span:nth-child(3) {
+  inset: 66px;
+  background: rgb(255 255 255 / 10%);
+  backdrop-filter: blur(4px);
+}
+
+/* Stats */
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.statCard {
+  min-width: 0;
+}
+
+.statHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.statHeader > span {
+  color: var(--color-text-secondary, #64748b);
+  font-size: 0.83rem;
+  font-weight: 600;
+}
+
+.statCard > strong {
+  display: block;
+  margin-top: 1rem;
+  color: var(--color-heading, #0f172a);
+  font-size: 2rem;
+}
+
+.statCard > small {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--color-text-secondary, #64748b);
+  font-size: 0.78rem;
+}
+
+/* Main grid */
+
+.primaryGrid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(330px, 0.8fr);
+  gap: 1.5rem;
+}
+
+.headingRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Notes */
+
+.notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.noteCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.noteContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.noteTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.noteTop h3 {
+  margin: 0;
+  color: var(--color-heading, #0f172a);
+  font-size: 1rem;
+}
+
+.noteContent p {
+  display: -webkit-box;
+  margin: 0.55rem 0 0;
+  overflow: hidden;
+  color: var(--color-text-secondary, #64748b);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.noteContent > span {
+  display: block;
+  margin-top: 0.6rem;
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 0.75rem;
+}
+
+/* Loading / messages */
+
+.loadingCard,
+.messageCard {
+  display: flex;
+  min-height: 220px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.loadingCard p,
+.messageCard p {
+  max-width: 400px;
+  margin: 0;
+  color: var(--color-text-secondary, #64748b);
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-border, #e2e8f0);
+  border-top-color: var(--color-primary, #6366f1);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+/* Tasks */
+
+.taskContainer {
+  gap: 0;
+}
+
+.task {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.8rem;
+  padding-block: 1rem;
+  font: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  cursor: pointer;
+}
+
+.task:hover strong {
+  color: var(--color-primary, #2563eb);
+}
+
+.task:first-child {
+  padding-top: 0;
+}
+
+.task:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.statusIcon {
+  color: var(--color-text-secondary, #94a3b8);
+}
+
+.statusIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.completed {
+  color: #16a34a;
+}
+
+.taskContent {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.taskContent strong {
+  color: var(--color-heading, #0f172a);
+  font-size: 0.86rem;
+}
+
+.taskContent span {
+  margin-top: 0.25rem;
+  color: var(--color-text-secondary, #64748b);
+  font-size: 0.74rem;
+}
+
+.completedText {
+  text-decoration: line-through;
+  opacity: 0.65;
+}
+
+/* Roadmap */
+
+.roadmapCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.roadmapContent {
+  min-width: 0;
+}
+
+.roadmapLabel {
+  color: var(--color-primary, #2563eb);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.roadmapContent h3 {
+  margin: 0.35rem 0 0;
+  color: var(--color-heading, #0f172a);
+  font-size: 1.3rem;
+}
+
+.roadmapContent p {
+  margin: 0.45rem 0 0;
+  color: var(--color-text-secondary, #64748b);
+  font-size: 0.86rem;
+}
+
+.progressInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  color: var(--color-text-secondary, #64748b);
+  font-size: 0.78rem;
+}
+
+.progressInfo strong {
+  color: var(--color-heading, #0f172a);
+}
+
+.progressTrack {
+  height: 9px;
+  margin-top: 0.55rem;
+  overflow: hidden;
+  background: var(--color-border, #e2e8f0);
+  border-radius: 999px;
+}
+
+.progressValue {
+  display: block;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #4f46e5
+  );
+  border-radius: inherit;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .primaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .roadmapCard {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+
+  .roadmapCard button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .welcome {
+    padding: 1.75rem;
+  }
+
+  .decoration {
+    display: none;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .headingRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .noteCard {
+    flex-direction: column;
+  }
+
+  .noteTop {
+    flex-direction: column;
+  }
+
+  .task {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
