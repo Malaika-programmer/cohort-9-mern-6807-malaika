@@ -1,3 +1,3 @@
-export { default as LoginPage } from "./Login/LoginPage";
-export { default as SignupPage } from "./Signup/SignupPage";
-export { default as ForgotPasswordPage } from "./ForgotPassword/ForgotPasswordPage";
+export { default as Login } from "./Login";
+export { default as Signup } from "./Signup";
+export { default as ForgotPasswordPage } from "./ForgotPasswordPage";
