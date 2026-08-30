@@ -1,0 +1,96 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.headingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.sectionHeading {
+  margin: 0;
+  max-width: none;
+}
+
+.sectionHeading h2 {
+  font-size: 2rem; /* Make sure it fits nicely */
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  );
+  gap: 1.25rem;
+}
+
+.statCard {
+  display: flex;
+  min-width: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.statContent {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.statContent strong {
+  color: var(--color-heading, #0f172a);
+  font-size: 1.6rem;
+}
+
+.statContent span {
+  margin-top: 0.15rem;
+  color: var(
+    --color-text-secondary,
+    #64748b
+  );
+  font-size: 0.76rem;
+}
+
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(
+      3,
+      minmax(0, 1fr)
+    );
+  }
+}
+
+@media (max-width: 760px) {
+  .headingRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .headingRow button {
+    width: 100%;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}

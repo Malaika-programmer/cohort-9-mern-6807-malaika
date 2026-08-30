@@ -1,0 +1,147 @@
+.card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1.25rem;
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.completedCard {
+  opacity: 0.75;
+}
+
+.overdueCard {
+  border-left: 4px solid #ef4444;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.completeButton {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  color: var(
+    --color-text-secondary,
+    #64748b
+  );
+  background: transparent;
+  border: 1px solid
+    var(--color-border, #e2e8f0);
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.completeButton:hover,
+.completedButton {
+  color: #15803d;
+  background: #dcfce7;
+  border-color: #bbf7d0;
+}
+
+.completeButton svg {
+  width: 21px;
+  height: 21px;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.content {
+  min-width: 0;
+  flex: 1;
+}
+
+.content h2 {
+  margin: 0;
+  color: var(--color-heading, #0f172a);
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+.completedTitle {
+  text-decoration: line-through;
+}
+
+.content p {
+  display: -webkit-box;
+  margin: 0.65rem 0 0;
+  overflow: hidden;
+
+  color: var(
+    --color-text-secondary,
+    #64748b
+  );
+  font-size: 0.87rem;
+  line-height: 1.7;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.dueDate {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+
+  color: var(
+    --color-text-secondary,
+    #64748b
+  );
+  font-size: 0.78rem;
+}
+
+.dueDate svg {
+  width: 17px;
+  height: 17px;
+  color: var(
+    --color-primary,
+    #6366f1
+  );
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+
+  padding-top: 1rem;
+  border-top: 1px solid
+    var(--color-border, #e2e8f0);
+}
+
+@media (max-width: 420px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}
