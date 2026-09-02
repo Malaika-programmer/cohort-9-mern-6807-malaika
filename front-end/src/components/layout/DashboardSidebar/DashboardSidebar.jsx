@@ -1,25 +1,91 @@
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
-import { X } from "lucide-react";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  X,
+  LayoutDashboard,
+  FileText,
+  ListTodo,
+  User,
+  Bell,
+  Settings,
+  LogOut,
+} from "lucide-react";
 
-import { dashboardSidebarContent } from "../../../Scripts/Contents/Dashboard/DashboardSidebar";
+import { logout, getUser } from "../../../utils/auth";
+
 import styles from "./DashboardSidebar.module.css";
 
 function DashboardSidebar({ isOpen = false, onClose }) {
-  const {
-    brand,
-    navigation,
-    accountNavigation,
-    logout,
-    user,
-    topbar,
-  } = dashboardSidebarContent;
+  const navigate = useNavigate();
+
+  const content = {
+    brand: {
+      name: "MindPlan",
+      highlight: "AI",
+      homePath: "/dashboard",
+    },
+
+    navigation: [
+      {
+        id: "dashboard",
+        label: "Dashboard",
+        path: "/dashboard",
+        icon: LayoutDashboard,
+        end: true,
+      },
+      {
+        id: "notes",
+        label: "Notes",
+        path: "/dashboard/notes",
+        icon: FileText,
+      },
+      {
+        id: "tasks",
+        label: "Tasks",
+        path: "/dashboard/tasks",
+        icon: ListTodo,
+      },
+    ],
+
+    accountNavigation: [
+      {
+        id: "profile",
+        label: "Profile",
+        path: "/dashboard/profile",
+        icon: User,
+      },
+
+      {
+        id: "settings",
+        label: "Settings",
+        path: "/dashboard/settings",
+        icon: Settings,
+      },
+    ],
+
+    logout: {
+      label: "Logout",
+    },
+
+    topbar: {
+      closeMenuLabel: "Close dashboard menu",
+    },
+  };
+
+  const authUser = getUser() || {};
+  const user = {
+    name: authUser.fullName || "User",
+    email: authUser.email || "user",
+  };
 
   const handleLogout = () => {
-    /*
-     * Backend logout will be connected here later.
-     */
-    console.log("Logout");
+    logout();
+
+    onClose();
+
+    navigate("/login", {
+      replace: true,
+    });
   };
 
   const getNavLinkClass = ({ isActive }) =>
@@ -29,13 +95,16 @@ function DashboardSidebar({ isOpen = false, onClose }) {
 
   return (
     <aside
-      className={[styles.sidebar, isOpen && styles.sidebarOpen]
+      className={[
+        styles.sidebar,
+        isOpen && styles.sidebarOpen,
+      ]
         .filter(Boolean)
         .join(" ")}
     >
       <div className={styles.header}>
         <NavLink
-          to={brand.homePath}
+          to={content.brand.homePath}
           className={styles.brand}
           onClick={onClose}
         >
@@ -46,14 +115,15 @@ function DashboardSidebar({ isOpen = false, onClose }) {
           />
 
           <span className={styles.brandName}>
-            MindPlan<span>AI</span>
+            {content.brand.name}
+            <span>{content.brand.highlight}</span>
           </span>
         </NavLink>
 
         <button
           type="button"
           className={styles.closeButton}
-          aria-label={topbar.closeMenuLabel}
+          aria-label={content.topbar.closeMenuLabel}
           onClick={onClose}
         >
           <X aria-hidden="true" />
@@ -65,7 +135,7 @@ function DashboardSidebar({ isOpen = false, onClose }) {
         aria-label="Dashboard navigation"
       >
         <ul className={styles.navList}>
-          {navigation.map((item) => {
+          {content.navigation.map((item) => {
             const Icon = item.icon;
 
             return (
@@ -76,7 +146,11 @@ function DashboardSidebar({ isOpen = false, onClose }) {
                   className={getNavLinkClass}
                   onClick={onClose}
                 >
-                  <Icon className={styles.navIcon} aria-hidden="true" />
+                  <Icon
+                    className={styles.navIcon}
+                    aria-hidden="true"
+                  />
+
                   <span>{item.label}</span>
                 </NavLink>
               </li>
@@ -87,7 +161,7 @@ function DashboardSidebar({ isOpen = false, onClose }) {
         <div className={styles.divider} />
 
         <ul className={styles.navList}>
-          {accountNavigation.map((item) => {
+          {content.accountNavigation.map((item) => {
             const Icon = item.icon;
 
             return (
@@ -97,7 +171,11 @@ function DashboardSidebar({ isOpen = false, onClose }) {
                   className={getNavLinkClass}
                   onClick={onClose}
                 >
-                  <Icon className={styles.navIcon} aria-hidden="true" />
+                  <Icon
+                    className={styles.navIcon}
+                    aria-hidden="true"
+                  />
+
                   <span>{item.label}</span>
                 </NavLink>
               </li>
@@ -109,8 +187,8 @@ function DashboardSidebar({ isOpen = false, onClose }) {
       <div className={styles.footer}>
         <div className={styles.user}>
           <img
-            src="/assets/logo.png"
-            alt="MindPlanAI"
+            src="/assets/circlelogo.png"
+            alt="MindPlanAI User"
             className={styles.avatar}
           />
 
@@ -125,8 +203,9 @@ function DashboardSidebar({ isOpen = false, onClose }) {
           className={styles.logoutButton}
           onClick={handleLogout}
         >
-          <logout.icon aria-hidden="true" />
-          <span>{logout.label}</span>
+          <LogOut aria-hidden="true" />
+
+          <span>{content.logout.label}</span>
         </button>
       </div>
     </aside>

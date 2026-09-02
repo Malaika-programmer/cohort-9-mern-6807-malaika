@@ -20,6 +20,14 @@ import {
 } from "../../../components/ui";
 
 import styles from "./Blogs.module.css";
+import Heroimg from "../../../assets/images/blog/bloghero.webp";
+import Editor from "../../../assets/images/blog/ed.webp";
+import I1 from "../../../assets/images/blog/i1.webp";
+import I2 from "../../../assets/images/blog/i2.webp";
+import I3 from "../../../assets/images/blog/i3.webp";
+import I4 from "../../../assets/images/blog/i4.webp";
+import I5 from "../../../assets/images/blog/i5.webp";
+import I6 from "../../../assets/images/blog/I6.webp";
 
 const blogsContent = {
   hero: {
@@ -29,9 +37,8 @@ const blogsContent = {
       "Explore practical insights about productivity, artificial intelligence, planning, goal setting and personal growth.",
     primaryButton: "Explore Articles",
     secondaryButton: "Latest Posts",
-    image:
-      "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=1200&q=80",
-  },
+    image: Heroimg,
+    },
 
   featured: {
     badge: "Featured Article",
@@ -45,8 +52,7 @@ const blogsContent = {
       title: "How AI Can Transform Your Daily Planning",
       excerpt:
         "Learn how artificial intelligence can help you organize tasks, prioritize goals and create smarter daily schedules.",
-      image:
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
+      image: Editor,
       author: "MindPlanAI Team",
       date: "July 28, 2026",
       readTime: "6 min read",
@@ -81,8 +87,7 @@ const blogsContent = {
         title: "7 Simple Ways To Improve Daily Productivity",
         excerpt:
           "Practical methods that can help you stay focused and complete your most important work.",
-        image:
-          "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=900&q=80",
+        image:I1,
         author: "MindPlanAI Team",
         date: "July 25, 2026",
         readTime: "5 min read",
@@ -94,9 +99,8 @@ const blogsContent = {
         category: "Artificial Intelligence",
         title: "Using AI To Build Smarter Learning Plans",
         excerpt:
-          "Understand how AI-generated learning roadmaps can make complex subjects easier to study.",
-        image:
-          "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&q=80",
+          "Understand how AI-generated learning paths can make complex subjects easier to study.",
+        image:I2,
         author: "MindPlanAI Team",
         date: "July 22, 2026",
         readTime: "7 min read",
@@ -109,8 +113,7 @@ const blogsContent = {
         title: "How To Turn Large Goals Into Small Actions",
         excerpt:
           "Break difficult goals into manageable steps and maintain steady progress.",
-        image:
-          "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=900&q=80",
+        image:I3,
         author: "MindPlanAI Team",
         date: "July 18, 2026",
         readTime: "4 min read",
@@ -123,8 +126,7 @@ const blogsContent = {
         title: "Create A Learning Routine That Actually Works",
         excerpt:
           "Build a practical learning schedule that fits your daily responsibilities and energy levels.",
-        image:
-          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=900&q=80",
+        image:I4,
         author: "MindPlanAI Team",
         date: "July 15, 2026",
         readTime: "6 min read",
@@ -137,8 +139,7 @@ const blogsContent = {
         title: "Why Time Blocking Improves Focus",
         excerpt:
           "Learn how assigning dedicated time blocks can reduce distractions and improve concentration.",
-        image:
-          "https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=900&q=80",
+        image:I5,
         author: "MindPlanAI Team",
         date: "July 10, 2026",
         readTime: "5 min read",
@@ -151,8 +152,7 @@ const blogsContent = {
         title: "Build Better Habits Through Consistent Progress",
         excerpt:
           "Simple strategies for developing routines that support long-term personal growth.",
-        image:
-          "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=900&q=80",
+        image:I6,
         author: "MindPlanAI Team",
         date: "July 6, 2026",
         readTime: "5 min read",

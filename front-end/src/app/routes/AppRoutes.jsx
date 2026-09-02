@@ -6,24 +6,18 @@ import {
   Dashboard,
   Notes,
   TasksPage,
-  SchedulePage,
-  RoadmapPage,
-  ProgressPage,
   ProfilePage,
-  NotificationsPage,
   SettingsPage,
 } from "../../pages/dashboard";
 
 import {
   Home,
-  About,
-  Features,
-  Pricing,
   Blogs,
-  FAQ,
+  About,
   Contact,
   PrivacyPolicy,
   NotFound,
+  Terms,
 } from "../../pages/public";
 
 import {
@@ -33,6 +27,7 @@ import {
 } from "../../pages/auth";
 
 import ProtectedRoute from "./ProtectedRoute";
+import GuestRoute from "./GuestRoute";
 
 function AppRoutes() {
   return (
@@ -40,23 +35,23 @@ function AppRoutes() {
       {/* Public Routes */}
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/features" element={<Features />} />
-      <Route path="/pricing" element={<Pricing />} />
       <Route path="/blogs" element={<Blogs />} />
-      <Route path="/faq" element={<FAQ />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/terms" element={<Terms />} />
       <Route
         path="/privacy-policy"
         element={<PrivacyPolicy />}
       />
 
       {/* Authentication Routes */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route
-        path="/forgot-password"
-        element={<ForgotPasswordPage />}
-      />
+      <Route element={<GuestRoute />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/forgot-password"
+          element={<ForgotPasswordPage />}
+        />
+      </Route>
 
       {/* Protected Dashboard */}
       <Route element={<ProtectedRoute />}>
@@ -67,29 +62,10 @@ function AppRoutes() {
 
           <Route path="tasks" element={<TasksPage />} />
 
-          <Route
-            path="schedule"
-            element={<SchedulePage />}
-          />
-
-          <Route
-            path="roadmaps"
-            element={<RoadmapPage />}
-          />
-
-          <Route
-            path="progress"
-            element={<ProgressPage />}
-          />
 
           <Route
             path="profile"
             element={<ProfilePage />}
-          />
-
-          <Route
-            path="notifications"
-            element={<NotificationsPage />}
           />
 
           <Route

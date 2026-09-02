@@ -3,19 +3,21 @@ import styles from "./SectionHeading.module.css";
 
 function SectionHeading({
   eyebrow,
+  badge,
   title,
   titleId,
   description,
   align = "center",
   className = "",
 }) {
+  const displayEyebrow = eyebrow || badge;
   return (
     <div
       className={`${styles.wrapper} ${styles[align]} ${className}`}
     >
-      {eyebrow && (
+      {displayEyebrow && (
         <span className={styles.eyebrow}>
-          {eyebrow}
+          {displayEyebrow}
         </span>
       )}
 
@@ -34,6 +36,7 @@ function SectionHeading({
 
 SectionHeading.propTypes = {
   eyebrow: PropTypes.string,
+  badge: PropTypes.string,
   title: PropTypes.string.isRequired,
   titleId: PropTypes.string,
   description: PropTypes.string,

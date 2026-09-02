@@ -19,6 +19,9 @@ import {
 } from "../../../components/ui";
 
 import styles from "./About.module.css";
+import Heroimg from "../../../assets/images/about/abouthero.webp";
+import S1 from "../../../assets/images/about/aboutstory1.webp";
+import S2 from "../../../assets/images/about/aboutstore2.webp";
 
 const aboutContent = {
   hero: {
@@ -28,8 +31,7 @@ const aboutContent = {
       "MindPlanAI combines Artificial Intelligence with productivity tools to help students, professionals and teams organize their work, learning and goals in one intelligent workspace.",
     primaryButton: "Get Started",
     secondaryButton: "Explore Features",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80",
+    image: Heroimg,
     floatingCard: {
       title: "AI Powered",
       description: "Smart planning for everyone",
@@ -42,15 +44,12 @@ const aboutContent = {
     title: "Why We Built MindPlanAI",
     description:
       "Managing tasks, notes, schedules and learning across different applications wastes time. MindPlanAI was created to bring everything together into one intelligent platform.",
-    imageOne:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80",
-    imageTwo:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&q=80",
+    imageOne: S1,
+    imageTwo: S2,
     features: [
       "AI Powered Planning",
       "Smart Notes",
       "Goal Tracking",
-      "Learning Roadmaps",
     ],
   },
 

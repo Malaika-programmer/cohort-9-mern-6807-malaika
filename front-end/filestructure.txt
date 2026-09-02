@@ -156,7 +156,6 @@ frontend/
 │   │   │   │       ├── HomeFeatures/
 │   │   │   │       ├── HomeServices/
 │   │   │   │       ├── HomeHowItWorks/
-│   │   │   │       ├── HomeRoadmap/
 │   │   │   │       ├── HomeTestimonials/
 │   │   │   │       └── HomeCTA/
 │   │   │   │
@@ -183,7 +182,6 @@ frontend/
 │   │   │   ├── Notes/
 │   │   │   ├── Tasks/
 │   │   │   ├── Schedule/
-│   │   │   ├── Roadmaps/
 │   │   │   ├── Progress/
 │   │   │   ├── Notifications/
 │   │   │   ├── Profile/
@@ -231,7 +229,6 @@ frontend/
 │   │   │
 │   │   ├── tasks/
 │   │   ├── schedule/
-│   │   ├── roadmaps/
 │   │   ├── blogs/
 │   │   ├── contact/
 │   │   ├── feedback/

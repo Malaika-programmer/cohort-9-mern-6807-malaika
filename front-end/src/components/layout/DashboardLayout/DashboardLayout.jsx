@@ -14,7 +14,7 @@ function DashboardLayout() {
         onClose={() => setIsSidebarOpen(false)}
       />
 
-      /* Close sidebar */
+      {/* Close sidebar */}
   {isSidebarOpen && (
         <button
           type="button"

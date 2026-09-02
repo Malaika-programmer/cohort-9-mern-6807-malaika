@@ -1,13 +1,24 @@
 import PropTypes from "prop-types";
 import { Bell, Menu, Search } from "lucide-react";
 
-import { dashboardSidebarContent } from "../../../Scripts/Contents/Dashboard/DashboardSidebar";
 import { Input } from "../../ui";
 
+import { getUser } from "../../../utils/auth";
 import styles from "./DashboardTopbar.module.css";
 
 function DashboardTopbar({ onMenuClick }) {
-  const { topbar, user } = dashboardSidebarContent;
+  const user = getUser() || { fullName: "MindPlanAI User" };
+  
+  const content = {
+    searchPlaceholder: "Search...",
+    menuLabel: "Open dashboard menu",
+
+    user: {
+      name: user.fullName || "User",
+      role: "User",
+      avatar: "/assets/circlelogo.png",
+    },
+  };
 
   return (
     <header className={styles.topbar}>
@@ -15,7 +26,7 @@ function DashboardTopbar({ onMenuClick }) {
         <button
           type="button"
           className={styles.menuButton}
-          aria-label={topbar.menuLabel}
+          aria-label={content.menuLabel}
           onClick={onMenuClick}
         >
           <Menu aria-hidden="true" />
@@ -25,33 +36,24 @@ function DashboardTopbar({ onMenuClick }) {
           <Input
             name="dashboardSearch"
             type="search"
-            placeholder={topbar.searchPlaceholder}
+            placeholder={content.searchPlaceholder}
             icon={Search}
-            aria-label={topbar.searchPlaceholder}
+            aria-label={content.searchPlaceholder}
           />
         </div>
       </div>
 
       <div className={styles.actions}>
-        <button
-          type="button"
-          className={styles.notificationButton}
-          aria-label={topbar.notificationLabel}
-        >
-          <Bell aria-hidden="true" />
-          <span className={styles.notificationDot} />
-        </button>
-
         <div className={styles.user}>
           <img
-            src="/assets/circlelogo.png"
-            alt="MindPlanAI"
+            src={content.user.avatar}
+            alt="User avatar"
             className={styles.avatar}
           />
 
           <div className={styles.userText}>
-            <strong>{user.name}</strong>
-            <span>User</span>
+            <strong>{content.user.name}</strong>
+            <span>{content.user.role}</span>
           </div>
         </div>
       </div>

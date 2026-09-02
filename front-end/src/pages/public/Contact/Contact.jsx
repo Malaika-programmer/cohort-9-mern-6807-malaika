@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   BriefcaseBusiness,
   Camera,
@@ -21,6 +22,7 @@ import {
 } from "../../../components/ui";
 
 import styles from "./Contact.module.css";
+import Heroimg from "../../../assets/images/contacther.webp"
 
 const contactContent = {
   hero: {
@@ -28,8 +30,7 @@ const contactContent = {
     title: "Let's Build Something Amazing Together",
     description:
       "Have a question, feedback, or partnership idea? We'd love to hear from you. Our team is always ready to help.",
-    image:
-      "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80",
+    image:Heroimg,
   },
 
   contactInfo: {
@@ -260,11 +261,48 @@ function ContactInfo() {
 
 function ContactForm() {
   const { form } = contactContent;
+  
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null);
 
-  const handleSubmit = (event) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+    setStatus(null);
 
-    // Backend API integration will be added later.
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send message.");
+      }
+
+      setStatus({ type: "success", message: data.message });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      setStatus({ type: "error", message: error.message });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -281,32 +319,62 @@ function ContactForm() {
             className={styles.form}
             onSubmit={handleSubmit}
           >
+            {status && (
+              <div
+                style={{
+                  padding: "1rem",
+                  marginBottom: "1rem",
+                  borderRadius: "8px",
+                  backgroundColor: status.type === "success" ? "#dcfce7" : "#fee2e2",
+                  color: status.type === "success" ? "#166534" : "#991b1b",
+                  fontSize: "0.9rem",
+                }}
+              >
+                {status.message}
+              </div>
+            )}
+
             <Input
               label={form.fields.name}
               placeholder={form.fields.name}
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
             />
 
             <Input
               label={form.fields.email}
               placeholder={form.fields.email}
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
             />
 
             <Input
               label={form.fields.subject}
               placeholder={form.fields.subject}
               type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
             />
 
             <TextArea
               label={form.fields.message}
               placeholder={form.fields.message}
               rows={6}
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
             />
 
-            <Button type="submit">
-              {form.button}
+            <Button type="submit" disabled={loading}>
+              {loading ? "Sending..." : form.button}
             </Button>
           </form>
         </Card>

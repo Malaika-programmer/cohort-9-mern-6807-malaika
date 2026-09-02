@@ -25,7 +25,10 @@ export const setAuthData = ({ token, user }) => {
   }
 
   if (user) {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    localStorage.setItem(
+      USER_KEY,
+      JSON.stringify(user),
+    );
   }
 };
 

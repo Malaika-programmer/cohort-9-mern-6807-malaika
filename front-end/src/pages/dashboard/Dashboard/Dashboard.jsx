@@ -21,6 +21,7 @@ import {
   SectionHeading,
 } from "../../../components/ui";
 
+import { getUser } from "../../../utils/auth";
 import styles from "./Dashboard.module.css";
 
 const NOTES_API_URL = "http://localhost:5000/api/notes";
@@ -38,11 +39,7 @@ const dashboardContent = {
       icon: Plus,
     },
 
-    secondaryAction: {
-      label: "Generate Roadmap",
-      path: "/dashboard/roadmaps/create",
-      icon: Sparkles,
-    },
+
   },
 
   stats: {
@@ -68,13 +65,7 @@ const dashboardContent = {
         icon: ListTodo,
         variant: "warning",
       },
-      {
-        id: "roadmaps",
-        label: "Active Roadmaps",
-        detail: "Learning paths in progress",
-        icon: BrainCircuit,
-        variant: "success",
-      },
+
       {
         id: "progress",
         label: "Weekly Progress",
@@ -146,33 +137,6 @@ const dashboardContent = {
     ],
   },
 
-  roadmap: {
-    heading: {
-      eyebrow: "Learning Roadmap",
-      title: "Current learning progress",
-      description:
-        "Continue your active roadmap and complete the next recommended topic.",
-    },
-
-    /*
-     * Temporary UI data.
-     * Replace with Roadmap API when that module is built.
-     */
-    data: {
-      icon: BrainCircuit,
-      title: "Frontend Development",
-      currentTopic: "React component architecture",
-      completedTopics: 12,
-      totalTopics: 18,
-      progress: 67,
-    },
-
-    action: {
-      label: "Continue Roadmap",
-      path: "/dashboard/roadmaps",
-      icon: ArrowRight,
-    },
-  },
 
   quickActions: {
     heading: {
@@ -207,14 +171,7 @@ const dashboardContent = {
         icon: CalendarDays,
         path: "/dashboard/schedule",
       },
-      {
-        id: "roadmap",
-        title: "Generate Roadmap",
-        description:
-          "Build a personalised AI learning path.",
-        icon: Sparkles,
-        path: "/dashboard/roadmaps/create",
-      },
+
     ],
   },
 
@@ -320,7 +277,9 @@ function DashboardPage() {
     ).length;
   }, [notes]);
 
-  const roadmap = dashboardContent.roadmap.data;
+
+  const authUser = getUser() || {};
+  const userName = authUser.fullName || "User";
 
   return (
     <main className={styles.dashboardPage}>
@@ -333,7 +292,7 @@ function DashboardPage() {
 
           <h1>
             {dashboardContent.welcome.greeting}{" "}
-            <span>User</span>
+            <span>{userName}</span>
           </h1>
 
           <p>{dashboardContent.welcome.description}</p>
@@ -356,24 +315,7 @@ function DashboardPage() {
               }
             </Button>
 
-            <Button
-              variant="outline"
-              icon={
-                dashboardContent.welcome.secondaryAction
-                  .icon
-              }
-              onClick={() =>
-                navigate(
-                  dashboardContent.welcome.secondaryAction
-                    .path,
-                )
-              }
-            >
-              {
-                dashboardContent.welcome.secondaryAction
-                  .label
-              }
-            </Button>
+
           </div>
         </div>
 
@@ -657,85 +599,7 @@ function DashboardPage() {
         </section>
       </div>
 
-      {/* Roadmap - temporary until Roadmap API */}
-      <section>
-        <SectionHeading
-          eyebrow={
-            dashboardContent.roadmap.heading.eyebrow
-          }
-          title={
-            dashboardContent.roadmap.heading.title
-          }
-          description={
-            dashboardContent.roadmap.heading
-              .description
-          }
-          align="left"
-        />
 
-        <Card className={styles.roadmapCard}>
-          <IconBox
-            icon={roadmap.icon}
-            size="large"
-            variant="primary"
-            animated={false}
-          />
-
-          <div className={styles.roadmapContent}>
-            <span className={styles.roadmapLabel}>
-              Active roadmap
-            </span>
-
-            <h3>{roadmap.title}</h3>
-
-            <p>
-              Next topic:{" "}
-              <strong>
-                {roadmap.currentTopic}
-              </strong>
-            </p>
-
-            <div className={styles.progressInfo}>
-              <span>
-                {roadmap.completedTopics} of{" "}
-                {roadmap.totalTopics} topics completed
-              </span>
-
-              <strong>{roadmap.progress}%</strong>
-            </div>
-
-            <div
-              className={styles.progressTrack}
-              role="progressbar"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-valuenow={roadmap.progress}
-              aria-label="Roadmap progress"
-            >
-              <span
-                className={styles.progressValue}
-                style={{
-                  width: `${roadmap.progress}%`,
-                }}
-              />
-            </div>
-          </div>
-
-          <Button
-            icon={
-              dashboardContent.roadmap.action.icon
-            }
-            iconPosition="right"
-            onClick={() =>
-              navigate(
-                dashboardContent.roadmap.action.path,
-              )
-            }
-          >
-            {dashboardContent.roadmap.action.label}
-          </Button>
-        </Card>
-      </section>
     </main>
   );
 }

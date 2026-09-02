@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-import { Button, Input } from "../../ui";
+
 import styles from "./Footer.module.css";
 
 const footerLinks = {
   product: [
     { label: "Home", path: "/" },
-    { label: "Features", path: "/features" },
-    { label: "Pricing", path: "/pricing" },
     { label: "Blogs", path: "/blogs" },
-    { label: "FAQ", path: "/faq" },
   ],
   company: [
     { label: "About Us", path: "/about" },
@@ -19,7 +16,6 @@ const footerLinks = {
     { label: "Terms & Conditions", path: "/terms" },
   ],
   support: [
-    { label: "FAQ", path: "/faq" },
     { label: "Contact Support", path: "/contact" },
     { label: "Privacy Policy", path: "/privacy-policy" },
     { label: "Terms & Conditions", path: "/terms" },
@@ -48,12 +44,7 @@ const socialLinks = [
     icon: LinkedinIcon,
     color: "#0a66c2",
   },
-  {
-    label: "Twitter",
-    url: "https://twitter.com",
-    icon: TwitterIcon,
-    color: "#0f172a",
-  },
+
   {
     label: "GitHub",
     url: "https://github.com",
@@ -109,14 +100,7 @@ function LinkedinIcon(props) {
   );
 }
 
-function TwitterIcon(props) {
-  return (
-    <SocialIcon {...props}>
-      <path d="M4 4l16 16" />
-      <path d="M20 4 4 20" />
-    </SocialIcon>
-  );
-}
+
 
 function GithubIcon(props) {
   return (
@@ -130,51 +114,13 @@ function GithubIcon(props) {
 function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const handleNewsletterSubmit = (event) => {
-    event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("newsletterEmail");
-
-    console.log("Newsletter email:", email);
-    event.currentTarget.reset();
-  };
 
   return (
     <footer className={styles.footer}>
       <div className={styles.footerGlow} aria-hidden="true" />
 
       <div className={styles.container}>
-        <div className={styles.newsletter}>
-          <div className={styles.newsletterContent}>
-            <span className={styles.newsletterLabel}>Stay productive</span>
-
-            <h2 className={styles.newsletterTitle}>
-              Get smarter planning tips in your inbox
-            </h2>
-
-            <p className={styles.newsletterDescription}>
-              Receive productivity ideas, AI planning updates and useful
-              resources from MindPlanAI.
-            </p>
-          </div>
-
-          <form
-            className={styles.newsletterForm}
-            onSubmit={handleNewsletterSubmit}
-          >
-            <Input
-              type="email"
-              name="newsletterEmail"
-              placeholder="Enter your email address"
-              icon={Mail}
-              aria-label="Email address"
-              required
-            />
-
-            <Button type="submit">Subscribe</Button>
-          </form>
-        </div>
 
         <div className={styles.footerGrid}>
           <div className={styles.brandColumn}>

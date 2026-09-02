@@ -4,15 +4,13 @@ import { Menu, Moon, Sun, X } from "lucide-react";
 
 import { Button } from "../../ui";
 import { useAppPreferences } from "../../../contexts/AppPreferencesContext";
+import { isAuthenticated } from "../../../utils/auth";
 import styles from "./Navbar.module.css";
 
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
-  { label: "Features", path: "/features" },
-  { label: "Pricing", path: "/pricing" },
   { label: "Blogs", path: "/blogs" },
-  { label: "FAQ", path: "/faq" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -102,13 +100,21 @@ function Navbar() {
               )}
             </button>
 
-            <Link to="/login" className={styles.loginLink}>
-              Login
-            </Link>
+            {isAuthenticated() ? (
+              <Button as={Link} to="/dashboard" size="small">
+                Dashboard
+              </Button>
+            ) : (
+              <>
+                <Link to="/login" className={styles.loginLink}>
+                  Login
+                </Link>
 
-            <Button as={Link} to="/signup" size="small">
-              Get Started
-            </Button>
+                <Button as={Link} to="/signup" size="small">
+                  Get Started
+                </Button>
+              </>
+            )}
           </div>
         </div>
 
@@ -168,22 +174,35 @@ function Navbar() {
               </span>
             </button>
 
-            <Link
-              to="/login"
-              className={styles.mobileLogin}
-              onClick={closeMenu}
-            >
-              Login
-            </Link>
+            {isAuthenticated() ? (
+              <Button
+                as={Link}
+                to="/dashboard"
+                fullWidth
+                onClick={closeMenu}
+              >
+                Dashboard
+              </Button>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className={styles.mobileLogin}
+                  onClick={closeMenu}
+                >
+                  Login
+                </Link>
 
-            <Button
-              as={Link}
-              to="/signup"
-              fullWidth
-              onClick={closeMenu}
-            >
-              Get Started
-            </Button>
+                <Button
+                  as={Link}
+                  to="/signup"
+                  fullWidth
+                  onClick={closeMenu}
+                >
+                  Get Started
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </nav>
