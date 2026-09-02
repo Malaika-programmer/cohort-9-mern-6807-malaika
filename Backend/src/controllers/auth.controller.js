@@ -1,52 +1,28 @@
 import authService from "../services/auth.service.js";
 
-import {
-  validateRegister,
-  validateLogin,
-} from "../validators/auth.validator.js";
-
-async function register(req, res) {
+export const register = async (req, res, next) => {
   try {
-    const errors = validateRegister(req.body);
-
-    if (Object.keys(errors).length > 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Please check the provided information.",
-        errors,
-      });
-    }
-
     const user = await authService.register(req.body);
 
     return res.status(201).json({
       success: true,
       message: "Account created successfully.",
-      data: user,
+      data: {
+        user,
+      },
     });
   } catch (error) {
-    return res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Unable to create account.",
-    });
+    next(error);
   }
-}
+};
 
-async function login(req, res) {
+export const login = async (req, res, next) => {
   try {
-    const errors = validateLogin(req.body);
-
-    if (Object.keys(errors).length > 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Please check the provided information.",
-        errors,
-      });
-    }
+    const { email, password } = req.body;
 
     const result = await authService.login(
-      req.body.email.trim().toLowerCase(),
-      req.body.password,
+      email,
+      password,
     );
 
     return res.status(200).json({
@@ -55,14 +31,49 @@ async function login(req, res) {
       data: result,
     });
   } catch (error) {
-    return res.status(error.statusCode || 500).json({
-      success: false,
-      message: error.message || "Unable to login.",
-    });
+    next(error);
   }
-}
+};
 
-export {
-  register,
-  login,
+export const logout = async (req, res, next) => {
+  try {
+    const result = await authService.logout();
+
+    return res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const forgotPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    const result = await authService.forgotPassword(email);
+
+    return res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  try {
+    const { token, newPassword } = req.body;
+
+    const result = await authService.resetPassword(token, newPassword);
+
+    return res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error) {
+    next(error);
+  }
 };

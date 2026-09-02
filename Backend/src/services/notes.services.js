@@ -96,7 +96,6 @@ export async function trashNote(userId, noteId) {
     where: {
       id: noteId,
       userId,
-      isTrashed: false,
     },
   });
 
@@ -115,7 +114,6 @@ export async function restoreNote(userId, noteId) {
     where: {
       id: noteId,
       userId,
-      isTrashed: true,
     },
   });
 

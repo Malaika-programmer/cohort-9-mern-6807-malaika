@@ -16,7 +16,32 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  notes     Note[]
+  resetToken       String?
+  resetTokenExpiry DateTime?
+
+  profile Profile?
+  notes   Note[]
+  tasks   Task[]
+  preferences Json?
+}
+
+model Profile {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  username    String?  @unique
+  phone       String?
+  occupation  String?
+  location    String?
+  dateOfBirth String?
+  website     String?
+  bio         String?  @db.Text
+  avatar      String?  @db.LongText
+  skills      Json?
+  socialLinks Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Note {
@@ -31,4 +56,34 @@ model Note {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+model Task {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?   @db.Text
+  status      String    @default("todo")
+  priority    String    @default("medium")
+  category    String?
+  dueDate     DateTime?
+  userId      Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([priority])
+  @@index([dueDate])
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String?
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

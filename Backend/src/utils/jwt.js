@@ -1,26 +1,27 @@
 import jwt from "jsonwebtoken";
 
-import env from "../config/env.js";
+const getJwtSecret = () => {
+  if (!process.env.JWT_SECRET) {
+    throw new Error("JWT_SECRET is not configured.");
+  }
 
-function generateToken(user) {
+  return process.env.JWT_SECRET;
+};
+
+export const generateToken = (user) => {
   return jwt.sign(
     {
       id: user.id,
       email: user.email,
       role: user.role,
     },
-    env.jwtSecret,
+    getJwtSecret(),
     {
-      expiresIn: env.jwtExpiresIn,
+      expiresIn: process.env.JWT_EXPIRES_IN || "7d",
     },
   );
-}
+};
 
-function verifyToken(token) {
-  return jwt.verify(token, env.jwtSecret);
-}
-
-export {
-  generateToken,
-  verifyToken,
+export const verifyToken = (token) => {
+  return jwt.verify(token, getJwtSecret());
 };

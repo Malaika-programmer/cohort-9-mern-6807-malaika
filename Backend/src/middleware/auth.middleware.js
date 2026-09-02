@@ -1,23 +1,29 @@
 import { verifyToken } from "../utils/jwt.js";
 
-function authMiddleware(req, res, next) {
+const authMiddleware = (req, res, next) => {
   try {
-    const authHeader = req.headers.authorization;
+    const authorizationHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    if (!authorizationHeader) {
       return res.status(401).json({
         success: false,
         message: "Authentication token is required.",
       });
     }
 
-    const token = authHeader.split(" ")[1];
+    const [scheme, token] = authorizationHeader.split(" ");
 
-    const decodedUser = verifyToken(token);
+    if (scheme !== "Bearer" || !token) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid authentication format.",
+      });
+    }
 
-    req.user = decodedUser;
+    const decodedToken = verifyToken(token);
 
-    // User is authenticated, so continue to the requested route.
+    req.user = decodedToken;
+
     next();
   } catch (error) {
     return res.status(401).json({
@@ -25,6 +31,6 @@ function authMiddleware(req, res, next) {
       message: "Invalid or expired authentication token.",
     });
   }
-}
+};
 
 export default authMiddleware;
