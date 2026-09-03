@@ -3,6 +3,9 @@ import cors from "cors";
 import pinoHttp from "pino-http";
 
 import authRoutes from "./src/routes/auth.routes.js";
+import notesRoutes from "./src/routes/notes.routes.js";
+import profileRoutes from "./src/routes/profile.routes.js";
+import tasksRoutes from "./src/routes/tasks.routes.js";
 
 const app = express();
 
@@ -25,6 +28,15 @@ app.get("/", (req, res) => {
 // Authentication routes
 app.use("/api/auth", authRoutes);
 
+// Profile routes
+app.use(["/api/profile", "/api/v1/profile"], profileRoutes);
+
+// Notes routes
+app.use(["/api/notes", "/api/v1/notes"], notesRoutes);
+
+// Tasks routes
+app.use(["/api/tasks", "/api/v1/tasks"], tasksRoutes);
+
 // Handle routes that do not exist
 app.use((req, res) => {
   res.status(404).json({
@@ -44,3 +56,4 @@ app.use((error, req, res, next) => {
 });
 
 export default app;
+
