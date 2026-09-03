@@ -1,27 +1,50 @@
+/* =========================================================
+   DASHBOARD PAGE
+========================================================= */
+
 .dashboardPage {
   display: flex;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
   flex-direction: column;
   gap: 2rem;
-}
 
-/* Welcome */
+  overflow-x: hidden;
+}
+/* =========================================================
+   WELCOME SECTION
+========================================================= */
 
 .welcome {
   position: relative;
+
   display: flex;
-  min-height: 270px;
+  width: 100%;
+  min-width: 0;
+  min-height: clamp(220px, 25vw, 300px);
+
+  box-sizing: border-box;
+
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
-  padding: 2.5rem;
+
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+
   overflow: hidden;
+
   color: #ffffff;
+
   background: linear-gradient(
     135deg,
     var(--color-primary),
     var(--color-secondary)
   );
+
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
 }
@@ -29,26 +52,37 @@
 .welcome::before {
   position: absolute;
   inset: 0;
+
   content: "";
+
   background: radial-gradient(
     circle at top right,
     rgb(255 255 255 / 10%) 0%,
     transparent 60%
   );
+
   pointer-events: none;
 }
 
 .welcomeContent {
   position: relative;
   z-index: 2;
+
+  width: 100%;
   max-width: 680px;
+  min-width: 0;
 }
 
 .welcomeContent h1 {
   margin: 1.25rem 0 0;
-  font-size: clamp(2rem, 4vw, 2.75rem);
+
+  font-size: clamp(1.6rem, 4vw, 2.75rem);
   font-weight: 800;
+
+  line-height: 1.15;
   letter-spacing: -0.04em;
+
+  overflow-wrap: anywhere;
 }
 
 .welcomeContent h1 span {
@@ -56,30 +90,61 @@
 }
 
 .welcomeContent p {
+  width: 100%;
   max-width: 620px;
+
   margin: 0.9rem 0 0;
+
   color: rgb(255 255 255 / 70%);
-  font-size: 1.05rem;
-  line-height: 1.75;
+
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+  line-height: 1.7;
+
+  overflow-wrap: anywhere;
 }
+
+/* =========================================================
+   ACTIONS
+========================================================= */
 
 .actions {
   display: flex;
+
+  width: 100%;
+  max-width: 620px;
+  min-width: 0;
+
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.75rem;
+
+  gap: clamp(0.6rem, 1.5vw, 1rem);
+
+  margin-top: clamp(1.25rem, 2vw, 1.75rem);
 }
+
+.actions button {
+  min-width: 0;
+}
+
+/* =========================================================
+   DECORATION
+========================================================= */
 
 .decoration {
   position: relative;
-  width: 210px;
-  height: 210px;
-  flex: 0 0 210px;
+
+  width: clamp(120px, 15vw, 210px);
+  height: clamp(120px, 15vw, 210px);
+
+  flex: 0 1 clamp(120px, 15vw, 210px);
+
   opacity: 0.8;
+
+  pointer-events: none;
 }
 
 .decoration span {
   position: absolute;
+
   border: 1px solid rgb(255 255 255 / 20%);
   border-radius: 50%;
 }
@@ -89,169 +154,314 @@
 }
 
 .decoration span:nth-child(2) {
-  inset: 32px;
+  inset: 15%;
 }
 
 .decoration span:nth-child(3) {
-  inset: 66px;
+  inset: 31%;
+
   background: rgb(255 255 255 / 10%);
+
   backdrop-filter: blur(4px);
 }
 
-/* Stats */
+/* =========================================================
+   STATS
+========================================================= */
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1.25rem;
+
+  width: 100%;
+  min-width: 0;
+
+  /*
+    Automatically adjusts according to available width.
+  */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 210px), 1fr)
+  );
+
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+
+  margin-top: clamp(0.5rem, 1vw, 1.25rem);
 }
 
 .statCard {
+  width: 100%;
   min-width: 0;
+  box-sizing: border-box;
+
+  overflow: hidden;
 }
 
 .statHeader {
   display: flex;
+
+  min-width: 0;
+
   align-items: center;
-  gap: 0.8rem;
+
+  gap: clamp(0.5rem, 1vw, 0.8rem);
 }
 
 .statHeader > span {
+  min-width: 0;
+
+  overflow: hidden;
+
   color: var(--color-text-secondary, #64748b);
-  font-size: 0.83rem;
+
+  font-size: clamp(0.72rem, 1vw, 0.83rem);
   font-weight: 600;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .statCard > strong {
   display: block;
+
   margin-top: 1rem;
+
   color: var(--color-heading, #0f172a);
-  font-size: 2rem;
+
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.2;
 }
 
 .statCard > small {
   display: block;
+
   margin-top: 0.3rem;
+
   color: var(--color-text-secondary, #64748b);
-  font-size: 0.78rem;
+
+  font-size: clamp(0.7rem, 1vw, 0.78rem);
+
+  overflow-wrap: anywhere;
 }
 
-/* Main grid */
+/* =========================================================
+   MAIN GRID
+========================================================= */
 
 .primaryGrid {
   display: grid;
+
+  width: 100%;
+  min-width: 0;
+
+  /*
+    Flexible two-column layout.
+    Right side will never force overflow.
+  */
   grid-template-columns:
     minmax(0, 1.2fr)
-    minmax(330px, 0.8fr);
-  gap: 1.5rem;
+    minmax(280px, 0.8fr);
+
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .headingRow {
   display: flex;
+
+  min-width: 0;
+
   align-items: flex-end;
   justify-content: space-between;
+
   gap: 1rem;
+
   margin-bottom: 1rem;
 }
 
-/* Notes */
+.headingRow > * {
+  min-width: 0;
+}
+
+/* =========================================================
+   NOTES
+========================================================= */
 
 .notesList {
   display: flex;
+
+  width: 100%;
+  min-width: 0;
+
   flex-direction: column;
-  gap: 0.9rem;
+
+  gap: clamp(0.7rem, 1vw, 0.9rem);
 }
 
 .noteCard {
   display: flex;
+
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
   align-items: flex-start;
-  gap: 1rem;
+
+  gap: clamp(0.7rem, 1.5vw, 1rem);
+
   cursor: pointer;
 }
 
 .noteContent {
   min-width: 0;
   flex: 1;
+
+  overflow-wrap: anywhere;
 }
 
 .noteTop {
   display: flex;
+
+  width: 100%;
+  min-width: 0;
+
   align-items: flex-start;
   justify-content: space-between;
+
   gap: 1rem;
 }
 
+.noteTop > * {
+  min-width: 0;
+}
+
 .noteTop h3 {
+  min-width: 0;
+
   margin: 0;
+
   color: var(--color-heading, #0f172a);
-  font-size: 1rem;
+
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .noteContent p {
   display: -webkit-box;
+
+  width: 100%;
+
   margin: 0.55rem 0 0;
+
   overflow: hidden;
+
   color: var(--color-text-secondary, #64748b);
-  font-size: 0.85rem;
+
+  font-size: clamp(0.78rem, 1vw, 0.85rem);
   line-height: 1.65;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
 .noteContent > span {
   display: block;
+
   margin-top: 0.6rem;
+
   color: var(--color-text-secondary, #94a3b8);
+
   font-size: 0.75rem;
 }
 
-/* Loading / messages */
+/* =========================================================
+   LOADING / MESSAGE
+========================================================= */
 
 .loadingCard,
 .messageCard {
   display: flex;
-  min-height: 220px;
+
+  width: 100%;
+  min-width: 0;
+  min-height: clamp(180px, 25vw, 220px);
+
+  box-sizing: border-box;
+
   align-items: center;
   justify-content: center;
+
   flex-direction: column;
+
   gap: 0.8rem;
+
+  padding: clamp(1rem, 3vw, 2rem);
+
   text-align: center;
 }
 
 .loadingCard p,
 .messageCard p {
+  width: 100%;
   max-width: 400px;
+
   margin: 0;
+
   color: var(--color-text-secondary, #64748b);
+
+  overflow-wrap: anywhere;
 }
 
 .spinner {
   width: 2rem;
   height: 2rem;
+
+  flex-shrink: 0;
+
   border: 3px solid var(--color-border, #e2e8f0);
   border-top-color: var(--color-primary, #6366f1);
+
   border-radius: 50%;
+
   animation: spin 700ms linear infinite;
 }
 
-/* Tasks */
+/* =========================================================
+   TASKS
+========================================================= */
 
 .taskContainer {
   gap: 0;
+  min-width: 0;
 }
 
 .task {
   display: flex;
+
   width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
   align-items: center;
+
   gap: 0.8rem;
+
   padding-block: 1rem;
+
   font: inherit;
   text-align: left;
+
   background: transparent;
+
   border: 0;
   border-bottom: 1px solid var(--color-border, #e2e8f0);
+
   cursor: pointer;
 }
 
@@ -269,6 +479,8 @@
 }
 
 .statusIcon {
+  flex-shrink: 0;
+
   color: var(--color-text-secondary, #94a3b8);
 }
 
@@ -283,19 +495,30 @@
 
 .taskContent {
   display: flex;
+
   min-width: 0;
   flex: 1;
+
   flex-direction: column;
 }
 
 .taskContent strong {
+  min-width: 0;
+
   color: var(--color-heading, #0f172a);
-  font-size: 0.86rem;
+
+  font-size: clamp(0.8rem, 1vw, 0.86rem);
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .taskContent span {
   margin-top: 0.25rem;
+
   color: var(--color-text-secondary, #64748b);
+
   font-size: 0.74rem;
 }
 
@@ -304,46 +527,81 @@
   opacity: 0.65;
 }
 
-/* Roadmap */
+/* =========================================================
+   ROADMAP
+========================================================= */
 
 .roadmapCard {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+
+  width: 100%;
+  min-width: 0;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+
   align-items: center;
-  gap: 1.5rem;
+
+  gap: clamp(0.9rem, 2vw, 1.5rem);
 }
 
 .roadmapContent {
   min-width: 0;
+
+  overflow-wrap: anywhere;
 }
 
 .roadmapLabel {
   color: var(--color-primary, #2563eb);
+
   font-size: 0.74rem;
   font-weight: 800;
+
   letter-spacing: 0.08em;
+
   text-transform: uppercase;
 }
 
 .roadmapContent h3 {
   margin: 0.35rem 0 0;
+
   color: var(--color-heading, #0f172a);
-  font-size: 1.3rem;
+
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
 }
 
 .roadmapContent p {
   margin: 0.45rem 0 0;
+
   color: var(--color-text-secondary, #64748b);
-  font-size: 0.86rem;
+
+  font-size: clamp(0.78rem, 1vw, 0.86rem);
+
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
 }
 
 .progressInfo {
   display: flex;
+
+  min-width: 0;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 1rem;
+
   margin-top: 1rem;
+
   color: var(--color-text-secondary, #64748b);
+
   font-size: 0.78rem;
 }
 
@@ -352,45 +610,125 @@
 }
 
 .progressTrack {
+  width: 100%;
+
   height: 9px;
+
   margin-top: 0.55rem;
+
   overflow: hidden;
+
   background: var(--color-border, #e2e8f0);
+
   border-radius: 999px;
 }
 
 .progressValue {
   display: block;
+
+  width: var(--progress, 0%);
   height: 100%;
+
   background: linear-gradient(
     90deg,
     #2563eb,
     #4f46e5
   );
+
   border-radius: inherit;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+/* =========================================================
+   LARGE SCREENS / 4K
+========================================================= */
+
+@media (min-width: 1600px) {
+  .dashboardPage {
+    gap: 2.25rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(240px, 1fr)
+    );
+  }
+
+  .primaryGrid {
+    gap: 2rem;
+  }
+
+  .welcome {
+    min-height: 300px;
   }
 }
 
-/* Responsive */
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
+  .primaryGrid {
+    grid-template-columns:
+      minmax(0, 1.1fr)
+      minmax(260px, 0.9fr);
+  }
+
+  .decoration {
+    width: 170px;
+    height: 170px;
+    flex-basis: 170px;
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 1000px) {
   .primaryGrid {
     grid-template-columns: 1fr;
   }
 
+  .welcome {
+    min-height: 240px;
+  }
+
   .statsGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, 200px), 1fr)
+    );
+  }
+
+  .roadmapCard {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr)
+      auto;
   }
 }
 
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media (max-width: 800px) {
+  .welcome {
+    align-items: flex-start;
+
+    padding: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .decoration {
+    width: 130px;
+    height: 130px;
+    flex-basis: 130px;
+  }
+
   .roadmapCard {
     grid-template-columns: 1fr;
+
     align-items: flex-start;
   }
 
@@ -399,9 +737,25 @@
   }
 }
 
-@media (max-width: 760px) {
+/* =========================================================
+   SMALL TABLET / LARGE MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .dashboardPage {
+    gap: 1.25rem;
+  }
+
   .welcome {
-    padding: 1.75rem;
+    flex-direction: column;
+
+    min-height: auto;
+
+    align-items: stretch;
+  }
+
+  .welcomeContent {
+    max-width: none;
   }
 
   .decoration {
@@ -410,40 +764,186 @@
 
   .actions {
     flex-direction: column;
+
+    max-width: none;
   }
 
   .actions button {
     width: 100%;
   }
-}
 
-@media (max-width: 640px) {
   .headingRow {
     align-items: flex-start;
+
     flex-direction: column;
+
+    gap: 0.7rem;
+  }
+
+  .headingRow button {
+    width: 100%;
+  }
+
+  .noteTop {
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .primaryGrid {
+    gap: 1rem;
   }
 
   .noteCard {
     flex-direction: column;
   }
 
-  .noteTop {
-    flex-direction: column;
+  .task {
+    align-items: flex-start;
+  }
+
+  .taskContent {
+    width: 100%;
+  }
+
+  .progressInfo {
+    gap: 0.5rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .dashboardPage {
+    gap: 1rem;
+  }
+
+  .welcome {
+    padding: 1rem;
+  }
+
+  .welcomeContent h1 {
+    font-size: 1.5rem;
+  }
+
+  .welcomeContent p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .actions {
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .statCard {
+    padding: 0.85rem;
+  }
+
+  .statCard > strong {
+    font-size: 1.4rem;
+  }
+
+  .noteCard {
+    gap: 0.7rem;
   }
 
   .task {
-    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding-block: 0.85rem;
+  }
+
+  .roadmapCard {
+    gap: 0.8rem;
   }
 }
 
-@media (max-width: 560px) {
-  .statsGrid {
-    grid-template-columns: 1fr;
+/* =========================================================
+   VERY SMALL MOBILE - 320px
+========================================================= */
+
+@media (max-width: 320px) {
+  .dashboardPage {
+    gap: 0.8rem;
+  }
+
+  .welcome {
+    padding: 0.85rem;
+    border-radius: 1rem;
+  }
+
+  .welcomeContent h1 {
+    font-size: 1.35rem;
+  }
+
+  .welcomeContent p {
+    font-size: 0.78rem;
+  }
+
+  .statCard {
+    padding: 0.7rem;
+  }
+
+  .statHeader {
+    gap: 0.5rem;
+  }
+
+  .statHeader > span {
+    font-size: 0.7rem;
+  }
+
+  .statCard > strong {
+    margin-top: 0.7rem;
+    font-size: 1.25rem;
+  }
+
+  .statCard > small {
+    font-size: 0.68rem;
+  }
+
+  .noteTop h3 {
+    font-size: 0.88rem;
+  }
+
+  .noteContent p {
+    font-size: 0.76rem;
+  }
+
+  .taskContent strong {
+    font-size: 0.78rem;
+  }
+
+  .taskContent span {
+    font-size: 0.7rem;
   }
 }
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .spinner {
     animation: none;
+  }
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
